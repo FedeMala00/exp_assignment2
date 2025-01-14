@@ -36,25 +36,7 @@ def generate_launch_description():
             'plansys2_bringup_launch_monolithic.py')),
         launch_arguments={'model_file': example_dir + '/pddl/assignment_domain.pddl'}.items()
         )
-    
-    # nav2_cmd = IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource(os.path.join(
-    #         get_package_share_directory('nav2_bringup'),
-    #         'launch',
-    #         'tb3_simulation_launch.py')),
-    #     launch_arguments={
-    #         'autostart': 'true',
-    #         'params_file': os.path.join(example_dir, 'params', 'nav2_params.yaml')
-    #     }.items())
-
-    # fake_nav2_cmd = Node(
-    #     package='plansys2_bt_example',
-    #     executable='nav2_sim_node',
-    #     name='nav2_sim_node',
-    #     output='screen',
-    #     parameters=[])
-
-    # Specify the actions
+ 
     move_cmd = Node(
         package='exp_assignment2',
         executable='move_action_node',
@@ -69,6 +51,13 @@ def generate_launch_description():
         output='screen',
         parameters=[])
     
+    aruco_cmd = Node(
+        package='ros2_aruco',
+        executable='aruco_node',
+        name='aruco_node',
+        output='screen',
+        parameters=[]
+    )
 
     # Create the launch description and populate
     ld = LaunchDescription()
@@ -78,11 +67,9 @@ def generate_launch_description():
 
     # Declare the launch options
     ld.add_action(plansys2_cmd)
-    # ld.add_action(fake_nav2_cmd)
-    # ld.add_action(nav2_cmd)
-
-
     ld.add_action(move_cmd)
     ld.add_action(patrol_cmd)
+    ld.add_action(aruco_cmd)
+
 
     return ld

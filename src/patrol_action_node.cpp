@@ -13,23 +13,27 @@
 // limitations under the License.
 
 #include <memory>
-
 #include "geometry_msgs/msg/twist.hpp"
-
 #include "plansys2_executor/ActionExecutorClient.hpp"
-
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_action/rclcpp_action.hpp"
 #include "lifecycle_msgs/msg/state.hpp"
+#include "ros2_aruco_interfaces/msg/aruco_markers.hpp"
+#include "std_msgs/msg/int32_multi_array.hpp"
 
 using namespace std::chrono_literals;
-
+ 
 class Patrol : public plansys2::ActionExecutorClient
 {
+
 public:
   Patrol()
   : plansys2::ActionExecutorClient("patrol", 1s)
   {
+    // Subscription to ArUco markers topic
+    aruco_sub_ = this->create_subscription<ros2_aruco_interfaces::msg::ArucoMarkers>(
+      "/aruco_markers", 10,
+      std::bind(&Patrol::aruco_callback, this, std::placeholders::_1));
   }
 
   rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
@@ -37,6 +41,7 @@ public:
   {
     progress_ = 0.0;
 
+    // Publisher for robot velocity commands
     cmd_vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
     cmd_vel_pub_->on_activate();
 
@@ -66,7 +71,7 @@ private:
       cmd.angular.x = 0.0;
       cmd.angular.y = 0.0;
       cmd.angular.z = 0.5;
-      RCLCPP_INFO(get_logger(), "Patrolling...");
+      // RCLCPP_INFO(get_logger(), "Patrolling...");
 
       cmd_vel_pub_->publish(cmd);
     } else {
@@ -84,9 +89,18 @@ private:
     }
   }
 
+  void aruco_callback(const ros2_aruco_interfaces::msg::ArucoMarkers::SharedPtr msg)
+  {
+    for (size_t i = 0; i < msg->marker_ids.size(); ++i) {
+      RCLCPP_INFO(get_logger(), "Detected marker ID: %ld", msg->marker_ids[i]);
+      
+    }
+  }
+
   float progress_;
 
   rclcpp_lifecycle::LifecyclePublisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub_;
+  rclcpp::Subscription<ros2_aruco_interfaces::msg::ArucoMarkers>::SharedPtr aruco_sub_;
 };
 
 int main(int argc, char ** argv)
