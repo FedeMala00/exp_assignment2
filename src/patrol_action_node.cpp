@@ -66,6 +66,7 @@ private:
       cmd.angular.x = 0.0;
       cmd.angular.y = 0.0;
       cmd.angular.z = 0.5;
+      RCLCPP_INFO(get_logger(), "Patrolling...");
 
       cmd_vel_pub_->publish(cmd);
     } else {
