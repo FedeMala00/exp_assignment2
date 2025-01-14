@@ -38,32 +38,32 @@ public:
   : plansys2::ActionExecutorClient("move", 500ms)
   {
     geometry_msgs::msg::PoseStamped wp;
+
     wp.header.frame_id = "/map";
     wp.header.stamp = now();
-    wp.pose.position.x = -7.0;
-    wp.pose.position.y = -1.5;
-    wp.pose.position.z = 0.1;
+    wp.pose.position.x = 6.0;
+    wp.pose.position.y = 2.0;
+    wp.pose.position.z = 0;
     wp.pose.orientation.x = 0.0;
     wp.pose.orientation.y = 0.0;
     wp.pose.orientation.z = 0.0;
     wp.pose.orientation.w = 1.0;
     waypoints_["wp0"] = wp;
 
-    wp.pose.position.x = -3.0;
-    wp.pose.position.y = -8.0;
-    wp.pose.position.z = 0.1;
-    waypoints_["wp1"] = wp;
-
-    wp.pose.position.x = 6.0;
-    wp.pose.position.y = 2.0;
-    wp.pose.position.z = 0.1;
-    waypoints_["wp2"] = wp;
-
     wp.pose.position.x = 7.0;
     wp.pose.position.y = -5.0;
-    wp.pose.position.z = 0.1;
-    waypoints_["wp3"] = wp;
+    wp.pose.position.z = 0;
+    waypoints_["wp1"] = wp;
 
+    wp.pose.position.x = -3.0;  
+    wp.pose.position.y = -8.0; 
+    wp.pose.position.z = 0;
+    waypoints_["wp2"] = wp;
+
+    wp.pose.position.x = -7.0;  
+    wp.pose.position.y = -1.5;  
+    wp.pose.position.z = 0;
+    waypoints_["wp3"] = wp;
     using namespace std::placeholders;
     pos_sub_ = create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
       "/amcl_pose",

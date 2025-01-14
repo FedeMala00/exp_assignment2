@@ -48,11 +48,12 @@ public:
   {
     problem_expert_->addInstance(plansys2::Instance{"r2d2", "robot"});
     problem_expert_->addInstance(plansys2::Instance{"starting_point", "waypoint"});
+    problem_expert_->addInstance(plansys2::Instance{"wp0", "waypoint"});
     problem_expert_->addInstance(plansys2::Instance{"wp1", "waypoint"});
     problem_expert_->addInstance(plansys2::Instance{"wp2", "waypoint"});
     problem_expert_->addInstance(plansys2::Instance{"wp3", "waypoint"});
-    problem_expert_->addInstance(plansys2::Instance{"wp4", "waypoint"});
 
+    // problem_expert_->addPredicate(plansys2::Predicate("(patrolled starting_point)"));
     problem_expert_->addPredicate(plansys2::Predicate("(robot_at r2d2 starting_point)"));
     
   }
@@ -63,7 +64,7 @@ public:
       case STARTING:
         {
           // Set the goal for next state
-          problem_expert_->setGoal(plansys2::Goal("(and(patrolled wp1))"));
+          problem_expert_->setGoal(plansys2::Goal("(and(patrolled wp0))"));
 
           // Compute the plan
           auto domain = domain_expert_->getDomain();
@@ -100,7 +101,7 @@ public:
               problem_expert_->removePredicate(plansys2::Predicate("(patrolled wp1)"));
 
               // Set the goal for next state
-              problem_expert_->setGoal(plansys2::Goal("(and(patrolled wp2))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(patrolled wp1))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
@@ -160,7 +161,7 @@ public:
               problem_expert_->removePredicate(plansys2::Predicate("(patrolled wp2)"));
 
               // Set the goal for next state
-              problem_expert_->setGoal(plansys2::Goal("(and(patrolled wp3))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(patrolled wp2))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
@@ -220,7 +221,7 @@ public:
               problem_expert_->removePredicate(plansys2::Predicate("(patrolled wp3)"));
 
               // Set the goal for next state
-              problem_expert_->setGoal(plansys2::Goal("(and(patrolled wp4))"));
+              problem_expert_->setGoal(plansys2::Goal("(and(patrolled wp3))"));
 
               // Compute the plan
               auto domain = domain_expert_->getDomain();
@@ -277,7 +278,7 @@ public:
               std::cout << "Successful finished " << std::endl;
 
               // Cleanning up
-              problem_expert_->removePredicate(plansys2::Predicate("(patrolled wp4)"));
+              problem_expert_->removePredicate(plansys2::Predicate("(patrolled wp3)"));
 
               ///////////////// WE DO NOT NEED THIS CONDITION BECAUSE WE WANT TO GO TO THE LOWEST AND NOT REPEAT ALL THE PATROL ////////////////////
 

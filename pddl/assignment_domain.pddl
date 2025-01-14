@@ -21,7 +21,7 @@ waypoint
 ;; Actions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (:durative-action move
     :parameters (?r - robot ?r1 ?r2 - waypoint)
-    :duration ( = ?duration 60)
+    :duration ( = ?duration 90)
     :condition (and
         (at start(robot_at ?r ?r1))
         )
@@ -32,7 +32,7 @@ waypoint
 )
 (:durative-action patrol
     :parameters (?r - robot ?wp - waypoint)
-    :duration ( = ?duration 60)
+    :duration ( = ?duration 90)
     :condition (and
         (at start(robot_at ?r ?wp))
        )
