@@ -19,6 +19,7 @@ List of all the package that are needed to run this project:
 - `navigation2`
 - `ros2_planning_system`
 - `slam_toolbox`
+- `ros2_aruco`
 
 ## Instructions on how to download and build 
 The first step is to clone this repository as well as [this one](https://github.com/FedeMala00/robot_urdf_test) that are:  
