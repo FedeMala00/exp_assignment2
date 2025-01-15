@@ -29,7 +29,7 @@ The other one for loading the map and launching robot, `gazebo` and `rviz`
 Then it is necessary to build the workspace using the command `colcon build` into the ros2 workspace folder.
 
 ## How to run the package
-In order to run it is necessary to open five different terminals and use the commands written in the `fast_launch.sh` script or directly make it executable and then using the command `./fast_launch.sh` in a new terminal.  
+In order to run it is necessary to open five different terminals and use the commands written in the `fast_launch.sh` script or directly make it executable and then using the command `./fast_launch.sh` 
 This will launch all the scripts in five terminals separated.
 
 
