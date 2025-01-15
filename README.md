@@ -38,26 +38,26 @@ This will launch all the scripts in five terminals separated.
 your_package_name/
 │
 ├── launch/
-│   ├── plansys2_simple_example_launch.py           # Launch Gazebo simulation
-│   ├── rviz_launch.py             # Launch RViz visualization
-│   └── navigation_launch.py       # Launch navigation stack
+│   ├── plansys2_simple_example_launch.py          
+│   ├── rviz_launch.py          
+│   └── navigation_launch.py       
 │
 ├── params/
-│   ├── nav2_params.yaml      # Configuration file for waypoints
-│   └── slam_config.yaml          # Robot-specific configuration
+│   ├── nav2_params.yaml     
+│   └── slam_config.yaml          
 │
 ├── pddl/
 │   ├── assignment_domain.pddl  # ROS processing IDs
 │
 ├── src/
-│   ├── move_action_node.cpp          # Gazebo world file
-│   ├── patrol_action_node.cpp      # Configuration file for waypoints
+│   ├── move_action_node.cpp         
+│   ├── patrol_action_node.cpp    
    
-│   ├── patrolling_controller_node.cpp      # Configuration file for waypoints
+│   ├── patrolling_controller_node.cpp     
 │   
-│   └── sretrieve_pos.cpp          # 
+│   └── sretrieve_pos.cpp           
 │
-└── CMakeLists.txt                      # This file
+└── CMakeLists.txt                      
 └── package.xml                     
 └── README.md                     
 
