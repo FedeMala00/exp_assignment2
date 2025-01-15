@@ -21,18 +21,10 @@
 #include "ros2_aruco_interfaces/msg/aruco_markers.hpp"
 #include "std_msgs/msg/int32_multi_array.hpp"
 
-#include <memory>
-#include "geometry_msgs/msg/twist.hpp"
-#include "plansys2_executor/ActionExecutorClient.hpp"
-#include "rclcpp/rclcpp.hpp"
-#include "rclcpp_action/rclcpp_action.hpp"
-#include "lifecycle_msgs/msg/state.hpp"
-#include "ros2_aruco_interfaces/msg/aruco_markers.hpp"
-#include "std_msgs/msg/int32_multi_array.hpp"
 
 using namespace std::chrono_literals;
 int buffer[4] = {0, 0, 0, 0};
-
+int count = 0;
 class Patrol : public plansys2::ActionExecutorClient
 {
 public:
@@ -95,8 +87,10 @@ private:
       cmd.angular.x = 0.0;
       cmd.angular.y = 0.0;
       cmd.angular.z = 0.0;
-      //count++; // counts for seeing that it saw only one aruco marker
-      //if (count != sizeof(buffer))
+      count++; // counts for seeing that it saw only one aruco marker
+      if (count + 1 == sizeof(buffer) / sizeof(buffer[0])){ //if reads one more aruco marker, when patrolled is finisced, remove it
+        buffer[count+1] = 0;
+      }
       cmd_vel_pub_->publish(cmd);
 
       finish(true, 1.0, "Patrol completed");
