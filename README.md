@@ -94,7 +94,6 @@ The robot will find the waypoint with the lowest marker ID and move towards it.
 - **patrolling_control_node**: This node defines the problem and generate and execute the plan
 - **patrol_action_node**: This node can be used for showing in real time the robot coordinates
 
-## Contributing
+## Video
 
-If you'd like to contribute to this project, feel free to fork the repository and submit a pull request. Please make sure to follow the code style and provide appropriate documentation for any changes.
 
