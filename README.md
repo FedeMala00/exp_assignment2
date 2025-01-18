@@ -95,5 +95,5 @@ The robot will find the waypoint with the lowest marker ID and move towards it.
 - **patrol_action_node**: This node can be used for showing in real time the robot coordinates
 
 ## Video
-<video src="https://github.com/FedeMala00/exp_assignment2/raw/master/Experimental_video.mp4" controls width="600">
-</video>
+[<video src="https://github.com/FedeMala00/exp_assignment2/raw/master/Experimental_video.mp4" controls width="600">
+</video>](https://github.com/user-attachments/assets/5a2c6082-dd5c-42c5-91da-054444503d1d)
