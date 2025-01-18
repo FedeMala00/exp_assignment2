@@ -36,7 +36,7 @@ This will launch all the scripts in five terminals separated.
 ## Package Structure
 
 ```bash
-your_package_name/
+exp_assignment2/
 │
 ├── launch/
 │   ├── plansys2_simple_example_launch.py          
