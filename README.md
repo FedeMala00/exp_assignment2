@@ -96,4 +96,7 @@ The robot will find the waypoint with the lowest marker ID and move towards it.
 
 ## Video
 
+<video src="https://github.com/FedeMala00/exp_assignment2/blob/master/Experimental_video.mp4" controls width="600">
+</video>
+
 
